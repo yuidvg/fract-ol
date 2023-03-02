@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/02 15:55:12 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:30:27 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <string.h>
 
 //local_libs
-# include "mlx.h"
+# include "../minilibx_mms_20191025_beta/mlx.h"
 # include "../libft/libft.h"
 
 # include "macos_keys.h"
@@ -48,7 +48,7 @@ typedef struct s_mlx
 {
 	void	*ptr;
 	void	*window;
-	t_image	*image;
+	t_image	image;
 }	t_mlx;
 
 typedef struct s_complex
