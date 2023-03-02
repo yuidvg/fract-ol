@@ -20,63 +20,42 @@ RESET = \033[0m
 #Directories
 SRCSDIR = srcs/
 OBJSDIR = objs/
-vpath %.c $(SRCSDIR) $(SRCSDIR)bonus/
+
+#libft
+LIBFT_DIR = libft
+
+#MLX
+MLX_DIR = minilibx_mms_20191025_beta
+
+NAME = fractol
+SRCS =	main.c
+OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
+INCLUDES = -I $(SRCSDIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
+LIBS = -lm -L ./$(LIBFT_DIR) -lft -L ./$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+
+vpath $(SRCS) $(SRCSDIR)
 vpath %.h $(SRCSDIR)
 vpath %.o $(OBJSDIR)
 
-#libft
-LIBFT = libft/libft.a
+all: $(NAME)
 
-#Mandatory
-NAME = push_swap
-SRCS =          assign_nums.c\
-				compress.c\
-				errors.c\
-				m_sort.c\
-				pull_target.c\
-				push_swap.c\
-				push.c\
-				reverse_rotate.c\
-				rotate.c\
-				solve.c\
-				swap.c
-OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
-INCLUDES = -I $(SRCSDIR)
-
-#Bonus
-NAME_BONUS = checker
-SRCS_BONUS =    assign_nums_bonus.c\
-				errors_bonus.c\
-				push_bonus.c\
-				checker_bonus.c\
-				reverse_rotate_bonus.c\
-				rotate_bonus.c\
-				swap_bonus.c\
-				manipulate_bonus.c
-OBJS_BONUS = $(SRCS_BONUS:%.c=$(OBJSDIR)%.o)
-INCLUDES_BONUS = -I $(SRCSDIR)bonus/
-
-all: $(OBJSDIR) $(NAME)
-
-$(NAME) : $(OBJS) $(LIBFT)
+$(NAME) : $(OBJS) libft mlx
 	@printf "$(GREEN)"
-	$(CC) $(CFLAGS) $(INCLUDES) $+ -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $^ -o $@
 	@printf "$(RESET)"
 
-bonus: all $(NAME_BONUS)
-
-$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
-	@printf "$(GREEN)"
-	$(CC) $(CFLAGS) $(INCLUDES_BONUS) $+ -o $@
-	@printf "$(RESET)"
-
-$(LIBFT):
+libft:
 	@printf "$(GREEN_DIM)"
-	make -C ./libft
+	make -C $(LIBFT_DIR)
 	@printf "$(RESET)"
 
-$(OBJSDIR):
-	@mkdir -p $(OBJSDIR)
+mlx:
+	@printf "$(GREEN_DIM)"
+	make -C $(MLX_DIR)
+	@printf "$(RESET)"
+
+debug:
+	$(CC) $(DEBUG)
 
 clean:
 	@printf "$(RED_DIM)"
@@ -95,7 +74,8 @@ re: fclean all
 
 $(OBJSDIR)%.o: %.c
 	@printf "$(GREEN_DIM)"
-	$(CC) $(CFLAGS) $(INCLUDES) $(INCLUDES_BONUS) -c $^ -o $@
+	@mkdir -p $(OBJSDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@printf "$(RESET)"
 
-.PHONY: fclean all re clean bonus
+.PHONY: fclean all re clean mlx libft
