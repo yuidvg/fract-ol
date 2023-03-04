@@ -22,7 +22,7 @@ OBJSDIR = objs/
 LIBFT_DIR = libft
 
 #MLX
-MLX_DIR = minilibx_mms_20191025_beta
+MLX_DIR = mlx
 
 #Normal
 NAME = fractol

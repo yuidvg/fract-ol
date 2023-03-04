@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:06:14 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/02 20:35:39 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:22:24 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static size_t	iters_till_2(t_complex *c)
 {
 	size_t		i;
 	t_complex	z;
-	double		tmp;
+	double_t	tmp;
 
 	z.real = 0;
 	z.imaginary = 0;
@@ -31,34 +31,36 @@ static size_t	iters_till_2(t_complex *c)
 	return (i * (i < MAX_ITER));
 }
 
-static int	color_of_pixel(size_t window_x, size_t window_y)
+static int	color_of_pixel(t_viewport *viewport)
 {
-	int			color;
+	int			color_rgb;
 	t_complex	c;
+	t_hsv		color_hsv;
 
-	color = 0x00000000;
-	c.real = window_x;
-	c.imaginary = window_y;
+	// color_rgb = 0x00000000;
+	c.real = (viewport->x - viewport->offset_x) / viewport->zoom;
+	c.imaginary = (viewport->y - viewport->offset_y) / viewport->zoom;
+
 	if (iters_till_2(&c))
-		color = 0x00ffffff;
-	return (color);
+		color_rgb = 0x00ffffff;
+	return (color_rgb);
 }
 
-void	draw_mandelbrot_to_image(t_image *image)
+void	draw_mandelbrot_to_image(t_image *image, t_viewport *viewport)
 {
-	size_t	window_x;
-	size_t	window_y;
-
-	window_y = 0;
-	while (window_y < WIN_H)
+	viewport->offset_x = 2 * WIN_W / 3;
+	viewport->offset_y = WIN_H / 2;
+	viewport->zoom = 500;
+	viewport->y = 0;
+	while (viewport->y < WIN_H)
 	{
-		window_x = 0;
-		while (window_x < WIN_W)
+		viewport->x = 0;
+		while (viewport->x < WIN_W)
 		{
-			putpixel_to_image(image, window_x, window_y,
-				color_of_pixel(window_x, window_y));
-			window_x++;
+			putpixel_to_image(image, viewport->x, viewport->y,
+				color_of_pixel(viewport));
+			viewport->x++;
 		}
-		window_y++;
+		viewport->y++;
 	}
 }
