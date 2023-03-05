@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 13:03:44 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/05 20:48:58 by ynishimu         ###   ########.fr       */
+/*   Created: 2023/03/04 15:21:07 by ynishimu          #+#    #+#             */
+/*   Updated: 2023/03/04 15:27:19 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-int	mouse_hook(int)
+static void	hsv_to_rgb(t_color color)
 {
+	int	rgb;
+
 
 }
 
-int	key_hook(int key, t_mlx *mlx)
+int	iters_to_color(size_t iters)
 {
-	if (key == KEY_ESC)
-	{
-		mlx_destroy_image(mlx->ptr, &mlx->image);
-		ft_exit(0, NULL, NULL, NULL);
-	}
-	return (0);
+	t_color	color;
+
+	color.h = iters_to_hue(iters);
+	color.s = 100;
+	color.v = 50;
+	return ();
 }
