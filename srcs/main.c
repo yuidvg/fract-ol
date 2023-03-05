@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:27:28 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/02 20:36:31 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:36:18 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char *argv[])
 			&mlx.image.line_len, &mlx.image.endian);
 	draw_mandelbrot_to_image(&mlx.image);
 	mlx_put_image_to_window(mlx.ptr, mlx.window, mlx.image.img, 0, 0);
-	// mlx_key_hook(mlx.ptr, key_hook, &mlx);
+	mlx_mouse_hook(mlx.window, mouse_hook, &vars);
+	mlx_key_hook(mlx.ptr, key_hook, &mlx);
 	mlx_loop(mlx.ptr);
 }

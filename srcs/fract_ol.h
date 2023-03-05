@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/02 20:30:27 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:35:32 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define FRACT_OL_H
 
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1366
+# define WIN_H 768
 # define TITLE "fract_ol"
-# define MAX_ITER 100
+# define MAX_ITER 256
 
 //libs
 # include <math.h>
@@ -30,7 +30,7 @@
 # include <string.h>
 
 //local_libs
-# include "../minilibx_mms_20191025_beta/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
 # include "macos_keys.h"
@@ -53,9 +53,18 @@ typedef struct s_mlx
 
 typedef struct s_complex
 {
-	double	real;
-	double	imaginary;
+	double_t	real;
+	double_t	imaginary;
 }	t_complex;
+
+typedef struct s_viewport
+{
+	size_t		x;
+	size_t		y;
+	double_t	zoom;
+	double_t	offset_x;
+	double_t	offset_y;
+}	t_viewport;
 
 
 //mlx

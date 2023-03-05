@@ -22,17 +22,17 @@ OBJSDIR = objs/
 LIBFT_DIR = libft
 
 #MLX
-MLX_DIR = minilibx_mms_20191025_beta
+MLX_DIR = mlx
 
 #Normal
 NAME = fractol
 SRCS =	main.c\
-		key_hook.c\
+		hooks.c\
 		mandelbrot.c\
 		render.c
 OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
 INCLUDES = -I $(SRCSDIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
-LIBS = -lm -L $(LIBFT_DIR) -lft -lmlx -framework OpenGL -framework AppKit
+LIBS = -lm -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 #Debug
 NAME_DEBUG = dbg
@@ -50,7 +50,7 @@ vpath %.a $(LIBFT_DIR)
 
 all: $(NAME)
 
-$(NAME) : $(OBJS) libft mlx
+$(NAME) : libft mlx $(OBJS)
 	@printf "$(GREEN)"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 	@printf "$(RESET)"
