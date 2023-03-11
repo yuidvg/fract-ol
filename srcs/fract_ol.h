@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/05 20:50:53 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:40:10 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define FRACT_OL_H
 
 # ifndef WIN_W
-#  define WIN_W 1920
+#  define WIN_W 1200
 # endif
 # ifndef WIN_H
-#  define WIN_H 1080
+#  define WIN_H 800
 # endif
 
 # define TITLE "fract_ol"
-# define MAX_ITER 256
+# define MAX_ITERS 50
 
 //libs
 # include <math.h>
@@ -42,25 +42,12 @@
 
 typedef struct s_image
 {
-	void	*img;
+	void	*ptr;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
 }	t_image;
-
-typedef struct s_mlx
-{
-	void	*ptr;
-	void	*window;
-	t_image	image;
-}	t_mlx;
-
-typedef struct s_complex
-{
-	double_t	real;
-	double_t	imaginary;
-}	t_complex;
 
 typedef struct s_viewport
 {
@@ -68,8 +55,22 @@ typedef struct s_viewport
 	double_t	y;
 	double_t	offset_x;
 	double_t	offset_y;
-	double_t	zoom;
+	double_t	scale;
 }	t_viewport;
+
+typedef struct s_graphics
+{
+	void		*mlx;
+	void		*window;
+	t_image		image;
+	t_viewport	port;
+}	t_graphics;
+
+typedef struct s_complex
+{
+	double_t	real;
+	double_t	imaginary;
+}	t_complex;
 
 typedef struct s_color
 {
@@ -81,9 +82,11 @@ typedef struct s_color
 
 //mlx
 void	putpixel_to_image(t_image *img, int x, int y, int color);
-int		key_hook(int key, t_mlx *mlx);
+int		key_hook(int key, t_graphics *mlx);
+int		mouse_hook(int button, int x, int y, t_graphics *mlx);
 
 //drow_fractals
 void	draw_mandelbrot_to_image(t_image *image, t_viewport *viewport);
+int		iters_to_color(size_t iters);
 
 #endif

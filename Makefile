@@ -6,6 +6,8 @@ CFLAGS = -Wall -Werror -Wextra
 GRAY = \033[37;2m
 GREEN = \033[32;1m
 GREEN_DIM = \033[32;2m
+BLUE = \033[34;1m
+BLUE_DIM = \033[34;2m
 RED = \033[31;1m
 RED_DIM = \033[31;2m
 YELLOW = \033[33;1m
@@ -27,8 +29,9 @@ MLX_DIR = mlx
 #Normal
 NAME = fractol
 SRCS =	main.c\
-		hooks.c\
+		colors.c\
 		mandelbrot.c\
+		hooks.c\
 		render.c
 OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
 INCLUDES = -I $(SRCSDIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
@@ -65,11 +68,17 @@ mlx:
 	make -C $(MLX_DIR)
 	@printf "$(RESET)"
 
-debug: $(NAME_DEBUG)
+run: all
+	@printf "$(BLUE)"
+	./$(NAME)
+	@printf "$(RESET)"
 
-$(NAME_DEBUG): $(OBJS) libft mlx
-	@printf "$(ORANGE_DIM)"
-	$(CC) $(CFLAGS_DEBUG) $(OBJS) $(LIBS) -o $@
+debug: CFLAGS += $(CFLAGS_DEBUG)
+debug: fclean $(NAME_DEBUG)
+
+$(NAME_DEBUG) : libft mlx $(OBJS)
+	@printf "$(GREEN)"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 	@printf "$(RESET)"
 
 clean:
