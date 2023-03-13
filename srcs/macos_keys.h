@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:13:46 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/02 14:07:49 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:45:58 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,18 @@
 # define KEY_B	11
 
 // NavigaKEYon Keys
-# define KEY_UP 			126
+# define KEY_UP 		126
 # define KEY_DOWN		125
 # define KEY_LEFT		123
 # define KEY_RIGHT		124
-# define KEY_PAGE_UP		116
+# define KEY_PAGE_UP	116
 # define KEY_PAGE_DOWN	121
+
+// Mouse Keys
+# define MOUSE_SCROLL_UP	4
+# define MOUSE_SCROLL_DOWN	5
+# define MOUSE_LEFT_CLICK	1
+# define MOUSE_RIGHT_CLICK	2
+# define MOUSE_MIDDLE_CLICK	3
 
 #endif // _MACOS_KEYS_H_
