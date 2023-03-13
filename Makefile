@@ -24,15 +24,17 @@ OBJSDIR = objs/
 LIBFT_DIR = libft
 
 #MLX
-MLX_DIR = mlx
+MLX_DIR = /usr/local/lib
 
 #Normal
 NAME = fractol
 SRCS =	main.c\
 		colors.c\
 		mandelbrot.c\
+		julia.c\
 		hooks.c\
-		render.c
+		fractals.c\
+		utils.c
 OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
 INCLUDES = -I $(SRCSDIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
 LIBS = -lm -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
@@ -48,12 +50,11 @@ CFLAGS_LEAK = -g -fsanitize=leak
 vpath %.c $(SRCSDIR)
 vpath %.h $(SRCSDIR)
 vpath %.o $(OBJSDIR)
-vpath %.dylib $(MLX_DIR)
 vpath %.a $(LIBFT_DIR)
 
 all: $(NAME)
 
-$(NAME) : libft mlx $(OBJS)
+$(NAME) : libft $(OBJS)
 	@printf "$(GREEN)"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 	@printf "$(RESET)"
@@ -63,10 +64,10 @@ libft:
 	make -C $(LIBFT_DIR)
 	@printf "$(RESET)"
 
-mlx:
-	@printf "$(GREEN_DIM)"
-	make -C $(MLX_DIR)
-	@printf "$(RESET)"
+# mlx:
+# 	@printf "$(GREEN_DIM)"
+# 	make -C $(MLX_DIR)
+# 	@printf "$(RESET)"
 
 run: all
 	@printf "$(BLUE)"

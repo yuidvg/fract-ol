@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:56:22 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/01 18:58:34 by ynishimu         ###   ########.fr       */
+/*   Created: 2023/03/13 19:54:37 by ynishimu          #+#    #+#             */
+/*   Updated: 2023/03/13 22:36:39 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-void	putpixel_to_image(t_image *img, int x, int y, int color)
+void	draw_fractal_to_window(t_fractol *f)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
+	if (f->type == MANDELBROT)
+		draw_mandelbrot_to_window(f);
+	if (f->type == JULIA)
+		draw_julia_to_window(f);
 }

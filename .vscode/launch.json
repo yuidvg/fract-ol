@@ -6,7 +6,9 @@
 			"request": "launch",
 			"name": "Launch",
 			"program": "${workspaceFolder}/dbg",
-			"args": [],
+			"args": [
+				"Mandelbrot"
+			],
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "make_debug"
 		}

@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/09 14:40:10 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:54:45 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 
 # include "macos_keys.h"
 
+typedef enum e_fractal_type
+{
+	MANDELBROT,
+	JULIA,
+}	t_fractal_type;
+
 typedef struct s_image
 {
 	void	*ptr;
@@ -51,42 +57,55 @@ typedef struct s_image
 
 typedef struct s_viewport
 {
-	double_t	x;
-	double_t	y;
-	double_t	offset_x;
-	double_t	offset_y;
-	double_t	scale;
+	double	x;
+	double	y;
+	double	offset_x;
+	double	offset_y;
+	double	scale;
 }	t_viewport;
 
-typedef struct s_graphics
+typedef struct s_mlx
 {
-	void		*mlx;
+	void		*ptr;
 	void		*window;
 	t_image		image;
-	t_viewport	port;
-}	t_graphics;
+}	t_mlx;
 
 typedef struct s_complex
 {
-	double_t	real;
-	double_t	imaginary;
+	double	real;
+	double	imaginary;
 }	t_complex;
 
 typedef struct s_color
 {
-	double_t	h;
-	double_t	s;
-	double_t	v;
-	int			rgb;
+	double	h;
+	double	s;
+	double	v;
+	int		rgb;
 }	t_color;
+
+typedef struct s_fractol
+{
+	t_mlx			mlx;
+	t_viewport		viewport;
+	t_fractal_type	type;
+	t_complex		z;
+	t_complex		c;
+}	t_fractol;
 
 //mlx
 void	putpixel_to_image(t_image *img, int x, int y, int color);
-int		key_hook(int key, t_graphics *mlx);
-int		mouse_hook(int button, int x, int y, t_graphics *mlx);
+int		key_hook(int key, t_fractol *mlx);
+int		mouse_hook(int button, int x, int y, t_fractol *mlx);
 
 //drow_fractals
-void	draw_mandelbrot_to_image(t_image *image, t_viewport *viewport);
+void	draw_fractal_to_window(t_fractol *f);
+void	draw_mandelbrot_to_window(t_fractol *f);
+void	draw_julia_to_window(t_fractol *f);
+
+//utils
 int		iters_to_color(size_t iters);
+size_t	iters_till_2(t_complex *z, t_complex *c);
 
 #endif
