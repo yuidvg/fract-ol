@@ -27,7 +27,6 @@ MLX_DIR = mlx
 #Normal
 NAME = fractol
 SRCS =	main.c\
-		hooks.c\
 		mandelbrot.c\
 		render.c
 OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
