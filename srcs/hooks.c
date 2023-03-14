@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 13:03:44 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 12:19:53 by ynishimu         ###   ########.fr       */
+/*   Created: 2023/03/14 15:11:53 by ynishimu          #+#    #+#             */
+/*   Updated: 2023/03/14 15:58:36 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	mouse_hook(int button, int x, int y, t_fractol *f)
 {
-	(void)x;
-	(void)y;
 	if (button == MOUSE_SCROLL_UP)
 	{
 		f->viewport.scale *= 1.1;
-		// view->port.offset_x += (x - WIN_W / 2) * view->port.scale;
-		// view->port.offset_y += (y - WIN_H / 2) * view->port.scale;
+		// zoom will follow actual mouse position (x, y)
+		f->viewport.offset_x
+			*= 1 + (0.1 * (f->viewport.offset_x - x) / f->viewport.offset_x);
+		f->viewport.offset_y
+			*= 1 + (0.1 * (f->viewport.offset_y - y) / f->viewport.offset_y);
 	}
 	else if (button == MOUSE_SCROLL_DOWN)
 	{
 		f->viewport.scale /= 1.1;
-		// view->port.offset_x -= (x - WIN_W / 2) * view->port.scale;
-		// view->port.offset_y -= (y - WIN_H / 2) * view->port.scale;
+		// zoom will follow actual mouse position (x, y)
+		f->viewport.offset_x
+			/= 1 + (0.1 * (f->viewport.offset_x - x) / f->viewport.offset_x);
+		f->viewport.offset_y
+			/= 1 + (0.1 * (f->viewport.offset_y - y) / f->viewport.offset_y);
 	}
 	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
 	{

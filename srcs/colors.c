@@ -6,13 +6,13 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:07 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/13 20:48:45 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:00:42 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-static int	get_rgb(double_t r, double_t g, double_t b, double_t m)
+static int	get_rgb(double r, double g, double b, double m)
 {
 	int	rgb;
 
@@ -27,9 +27,9 @@ static int	get_rgb(double_t r, double_t g, double_t b, double_t m)
 
 static int	hsv_to_rgb(t_color *color)
 {
-	double_t	c;
-	double_t	x;
-	double_t	m;
+	double	c;
+	double	x;
+	double	m;
 
 	c = color->v * color->s;
 	x = c * (1 - fabs(fmod(color->h / 60, 2) - 1));

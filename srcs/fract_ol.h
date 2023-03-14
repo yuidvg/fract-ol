@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 13:04:31 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:01:00 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_color
 	double	h;
 	double	s;
 	double	v;
-	int		rgb;
 }	t_color;
 
 typedef struct s_fractol
