@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:30:03 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/13 22:35:40 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:06:13 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	draw_julia_to_window(t_fractol *f)
 {
-	f->viewport.offset_x = WIN_W / 2;
-	f->viewport.offset_y = WIN_H / 2;
-	f->viewport.scale = 2;
 	f->viewport.y = 0;
 	while (f->viewport.y < WIN_H)
 	{

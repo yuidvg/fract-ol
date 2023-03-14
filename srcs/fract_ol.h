@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/13 21:54:45 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:04:31 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void	draw_julia_to_window(t_fractol *f);
 //utils
 int		iters_to_color(size_t iters);
 size_t	iters_till_2(t_complex *z, t_complex *c);
+int		set_atod(double *num, char *str);
 
 #endif
