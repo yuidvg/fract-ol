@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:56:22 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/13 21:31:22 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:20:26 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,29 @@ void	putpixel_to_image(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-size_t	iters_till_2(t_complex *z, t_complex *c)
+size_t	iters_till_2(t_fractol *f)
 {
 	size_t	i;
 	double	tmp;
 
 	i = 0;
-	while (i < MAX_ITERS && z->real * z->real + z->imaginary * z->imaginary < 4)
+	while (i < f->max_iters
+		&& f->z.real * f->z.real + f->z.imaginary * f->z.imaginary < 4)
 	{
-		tmp = z->real * z->real - z->imaginary * z->imaginary + c->real;
-		z->imaginary = 2 * z->real * z->imaginary + c->imaginary;
-		z->real = tmp;
+		tmp = f->z.real * f->z.real
+			- f->z.imaginary * f->z.imaginary + f->c.real;
+		f->z.imaginary = 2 * f->z.real * f->z.imaginary + f->c.imaginary;
+		f->z.real = tmp;
 		i++;
 	}
 	return (i);
+}
+
+int	print_help(int retval)
+{
+	ft_printf("Invalid Parameters.\nFollow these formats:\n");
+	ft_printf("Mandelbrot\n");
+	ft_printf("Julia [(real part of the seed) (imaginary part of the seed)]\n");
+	ft_printf("*Absolute value of options of Julia must be smaller than 2.\n");
+	return (retval);
 }

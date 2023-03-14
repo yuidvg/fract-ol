@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:30:03 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 12:06:13 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:30:49 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_julia_to_window(t_fractol *f)
 			f->z.imaginary
 				= (f->viewport.y - f->viewport.offset_y) / f->viewport.scale;
 			putpixel_to_image(&f->mlx.image, f->viewport.x, f->viewport.y,
-				iters_to_color(iters_till_2(&f->z, &f->c)));
+				iters_to_color(iters_till_2(f), f));
 			f->viewport.x++;
 		}
 		f->viewport.y++;

@@ -34,6 +34,7 @@ SRCS =	main.c\
 		julia.c\
 		hooks.c\
 		fractals.c\
+		fern.c\
 		utils.c
 OBJS = $(SRCS:%.c=$(OBJSDIR)%.o)
 INCLUDES = -I $(SRCSDIR) -I $(LIBFT_DIR) -I $(MLX_DIR)

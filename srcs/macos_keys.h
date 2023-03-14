@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:13:46 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/08 17:45:58 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:40:15 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@
 # define KEY_COMMAND_LEFT	55
 # define KEY_COMMAND_RIGHT	55
 # define KEY_SPACE			49
-# define KEY_PLUS			69
-# define KEY_MINUS			78
+# define KEY_PLUS			24
+# define KEY_MINUS			27
 # define KEY_STAR			67
+# define KEY_PERIOD			47
+# define KEY_COMMA			43
 
 // Numeric Keys
 # define KEY_1	83
@@ -63,5 +65,6 @@
 # define MOUSE_LEFT_CLICK	1
 # define MOUSE_RIGHT_CLICK	2
 # define MOUSE_MIDDLE_CLICK	3
+
 
 #endif // _MACOS_KEYS_H_

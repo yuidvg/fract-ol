@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 16:01:00 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:55:57 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # ifndef WIN_H
 #  define WIN_H 800
 # endif
-
-# define TITLE "fract_ol"
-# define MAX_ITERS 50
 
 //libs
 # include <math.h>
@@ -44,6 +41,7 @@ typedef enum e_fractal_type
 {
 	MANDELBROT,
 	JULIA,
+	FERN,
 }	t_fractal_type;
 
 typedef struct s_image
@@ -91,6 +89,8 @@ typedef struct s_fractol
 	t_fractal_type	type;
 	t_complex		z;
 	t_complex		c;
+	size_t			max_iters;
+	size_t			shift;
 }	t_fractol;
 
 //mlx
@@ -102,10 +102,13 @@ int		mouse_hook(int button, int x, int y, t_fractol *mlx);
 void	draw_fractal_to_window(t_fractol *f);
 void	draw_mandelbrot_to_window(t_fractol *f);
 void	draw_julia_to_window(t_fractol *f);
+void	draw_fern_to_window(t_fractol *f);
 
 //utils
-int		iters_to_color(size_t iters);
-size_t	iters_till_2(t_complex *z, t_complex *c);
+int		iters_to_color(size_t iters, t_fractol *f);
+size_t	iters_till_2(t_fractol *f);
 int		set_atod(double *num, char *str);
+int		print_help(int retval);
+void	init_settings(t_fractol *f);
 
 #endif

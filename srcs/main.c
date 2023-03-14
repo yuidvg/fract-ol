@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:27:28 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/13 22:56:08 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:53:53 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ static int	set_type(t_fractal_type *type, char *arg)
 		*type = MANDELBROT;
 		return (0);
 	}
-	if (ft_strncmp("Julia", arg, ft_strlen(arg)) == 0)
+	else if (ft_strncmp("Julia", arg, ft_strlen(arg)) == 0)
 	{
 		*type = JULIA;
+		return (0);
+	}
+	else if (ft_strncmp("Fern", arg, ft_strlen(arg)) == 0)
+	{
+		*type = FERN;
 		return (0);
 	}
 	return (-1);
@@ -49,14 +54,6 @@ static int	init_mlx(t_fractol *f, char *type)
 	return (0);
 }
 
-static int	print_help(int retval)
-{
-	ft_printf("Invalid Parameters.\nFollow these formats:\n");
-	ft_printf("Mandelbrot\n");
-	ft_printf("Julia [(real part of the seed) (imaginary part of the seed)]\n");
-	return (retval);
-}
-
 int	main(int argc, char *argv[])
 {
 	t_fractol	f;
@@ -65,7 +62,7 @@ int	main(int argc, char *argv[])
 		return (print_help(0));
 	else if (set_type(&f.type, argv[1]))
 		return (print_help(0));
-	else if (f.type == MANDELBROT && argc != 2)
+	else if ((f.type == MANDELBROT || f.type == FERN) && argc != 2)
 		return (print_help(0));
 	else if (f.type == JULIA && !(argc == 2 || argc == 4))
 		return (print_help(0));
@@ -80,6 +77,7 @@ int	main(int argc, char *argv[])
 		f.c.imaginary = 0.27015;
 	}
 	init_mlx(&f, argv[1]);
+	init_settings(&f);
 	draw_fractal_to_window(&f);
 	mlx_loop(f.mlx.ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:07 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 16:00:42 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:29:35 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ static int	hsv_to_rgb(t_color *color)
 		return (get_rgb(c, 0, x, m));
 }
 
-int	iters_to_color(size_t iters)
+int	iters_to_color(size_t iters, t_fractol *f)
 {
 	t_color	color;
 
-	if (iters == MAX_ITERS)
+	if (iters == f->max_iters)
 		return (0x00000000);
 	else
 	{
-		color.h = iters * 30 % 360;
+		color.h = iters * 30 + f->shift % 360;
 		color.s = 1;
 		color.v = 1;
 	}
