@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:27:28 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 23:53:53 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 21:53:39 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static int	set_type(t_fractal_type *type, char *arg)
 
 static int	set_complex(t_complex *c, char *real, char *imaginary)
 {
-	if (ft_set_atod(&c->real, real))
+	if (set_atod(&c->real, real))
 		return (-1);
-	if (ft_set_atod(&c->imaginary, imaginary))
+	if (set_atod(&c->imaginary, imaginary))
 		return (-1);
 	return (0);
 }

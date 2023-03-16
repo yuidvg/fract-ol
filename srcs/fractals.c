@@ -6,17 +6,25 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:54:37 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 23:55:38 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:07:47 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
+static void	set_seed(t_xorshift *seed)
+{
+	seed->x = 123456789;
+	seed->y = 362436069;
+	seed->z = 521288629;
+	seed->w = 88675123;
+}
+
 void	init_settings(t_fractol *f)
 {
+	f->shift = 0;
 	if (f->type == MANDELBROT)
 	{
-		f->shift = 0;
 		f->max_iters = 50;
 		f->viewport.offset_x = 2 * WIN_W / 3;
 		f->viewport.offset_y = WIN_H / 2;
@@ -24,11 +32,20 @@ void	init_settings(t_fractol *f)
 	}
 	else if (f->type == JULIA)
 	{
-		f->shift = 0;
 		f->max_iters = 50;
 		f->viewport.offset_x = WIN_W / 2;
 		f->viewport.offset_y = WIN_H / 2;
 		f->viewport.scale = 400;
+	}
+	else if (f->type == FERN)
+	{
+		f->max_iters = 100000;
+		f->viewport.offset_x = WIN_W / 2;
+		f->viewport.offset_y = 0;
+		f->viewport.x = 0;
+		f->viewport.y = 0;
+		f->viewport.scale = 100;
+		set_seed(&f->seed);
 	}
 }
 

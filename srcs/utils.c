@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:56:22 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 23:20:26 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:29:43 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int	print_help(int retval)
 	ft_printf("Invalid Parameters.\nFollow these formats:\n");
 	ft_printf("Mandelbrot\n");
 	ft_printf("Julia [(real part of the seed) (imaginary part of the seed)]\n");
-	ft_printf("*Absolute value of options of Julia must be smaller than 2.\n");
+	ft_printf("Fern\n");
 	return (retval);
 }

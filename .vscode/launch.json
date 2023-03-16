@@ -7,7 +7,9 @@
 			"name": "Launch",
 			"program": "${workspaceFolder}/dbg",
 			"args": [
-				"Mandelbrot"
+				"Julia",
+				"2.1",
+				"2.2",
 			],
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "make_debug"

@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:13:46 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 17:40:15 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:01:18 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@
 # define MOUSE_LEFT_CLICK	1
 # define MOUSE_RIGHT_CLICK	2
 # define MOUSE_MIDDLE_CLICK	3
-
 
 #endif // _MACOS_KEYS_H_

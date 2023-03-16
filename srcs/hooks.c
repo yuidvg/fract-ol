@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:11:53 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 23:02:24 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:18:29 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ int	mouse_hook(int button, int x, int y, t_fractol *f)
 	return (0);
 }
 
+static void	mlx_exit(t_fractol *f)
+{
+	mlx_destroy_image(f->mlx.ptr, f->mlx.image.ptr);
+	mlx_destroy_window(f->mlx.ptr, f->mlx.window);
+	exit(0);
+}
+
 int	key_hook(int key, t_fractol *f)
 {
 	if (key == KEY_ESC)
-	{
-		mlx_destroy_image(f->mlx.ptr, f->mlx.image.ptr);
-		mlx_destroy_window(f->mlx.ptr, f->mlx.window);
-		exit(0);
-	}
-	else if (key == KEY_PLUS && f->max_iters < 1000)
-		f->max_iters += 10;
+		mlx_exit(f);
+	else if (key == KEY_PLUS && f->max_iters < SIZE_MAX - 100010)
+		f->max_iters += 10 + 100000 * (f->type == FERN);
 	else if (key == KEY_MINUS && f->max_iters > 10)
 		f->max_iters -= 10;
 	else if (key == KEY_LEFT || key == KEY_A)

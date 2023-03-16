@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/14 23:55:57 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 21:53:40 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,18 @@ typedef struct s_complex
 
 typedef struct s_color
 {
-	double	h;
-	double	s;
-	double	v;
+	double	hue;
+	double	saturation;
+	double	value;
 }	t_color;
+
+typedef struct s_xorshift
+{
+	uint32_t	x;
+	uint32_t	y;
+	uint32_t	z;
+	uint32_t	w;
+}	t_xorshift;
 
 typedef struct s_fractol
 {
@@ -91,6 +99,7 @@ typedef struct s_fractol
 	t_complex		c;
 	size_t			max_iters;
 	size_t			shift;
+	t_xorshift		seed;
 }	t_fractol;
 
 //mlx
@@ -106,9 +115,11 @@ void	draw_fern_to_window(t_fractol *f);
 
 //utils
 int		iters_to_color(size_t iters, t_fractol *f);
+int		hsv_to_rgb(t_color *color);
 size_t	iters_till_2(t_fractol *f);
 int		set_atod(double *num, char *str);
 int		print_help(int retval);
 void	init_settings(t_fractol *f);
+int		set_atod(double *num, char *str);
 
 #endif
