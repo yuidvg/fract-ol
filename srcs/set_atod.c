@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:29:40 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 22:00:36 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:40:22 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	insert_integer(double *num, char *str, size_t *i)
 		if (!ft_isdigit(str[*i]))
 			return (-1);
 		*num = *num * 10 + str[*i] - '0';
-		if (isfinite(*num) == 0 || isnormal(*num) == 0)
+		if (*num != 0 && (!isfinite(*num) || !isnormal(*num)))
 			return (-1);
 		(*i)++;
 	}
@@ -45,7 +45,7 @@ static int	insert_fraction(double *num, char *fractions)
 		if (!ft_isdigit(fractions[i]))
 			return (-1);
 		*num += (fractions[i] - '0') / digit;
-		if (isfinite(*num) == 0 || isnormal(*num) == 0)
+		if (*num != 0 && (isfinite(*num) == 0 || isnormal(*num) == 0))
 			return (-1);
 		i++;
 		digit *= 10;
