@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 21:53:40 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:45:57 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
+# include <mlx.h>
 
 //local_libs
-# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
 # include "macos_keys.h"

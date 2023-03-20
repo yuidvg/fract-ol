@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:07 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 17:56:21 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:14:14 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	iters_to_color(size_t iters, t_fractol *f)
 		return (0x00000000);
 	else
 	{
-		color.hue = iters * 30 + f->shift % 360;
+		color.hue = (iters * 5) + f->shift % 360;
 		color.saturation = 1;
 		color.value = 1;
 	}

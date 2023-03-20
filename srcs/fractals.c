@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:54:37 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 22:07:47 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:52:08 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_settings(t_fractol *f)
 		f->viewport.offset_y = 0;
 		f->viewport.x = 0;
 		f->viewport.y = 0;
-		f->viewport.scale = 100;
+		f->viewport.scale = 80;
 		set_seed(&f->seed);
 	}
 }
