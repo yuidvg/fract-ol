@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Launch",
+			"program": "${workspaceFolder}/dbg",
+			"args": [
+				"Julia",
+				"0.3",
+				"0.4",
+			],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "make_debug"
+		}
+	],
+	"compounds": []
+}

@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:04:17 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/20 13:51:20 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:57:48 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,6 @@ int		set_atod(double *num, char *str);
 int		print_help(int retval);
 void	init_settings(t_fractol *f);
 int		set_atod(double *num, char *str);
+int		mlx_exit(t_fractol *f);
 
 #endif

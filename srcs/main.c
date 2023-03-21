@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:27:28 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 21:53:39 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:36:13 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	init_mlx(t_fractol *f, char *type)
 			&f->mlx.image.line_len, &f->mlx.image.endian);
 	mlx_hook(f->mlx.window, 2, 0, key_hook, f);
 	mlx_hook(f->mlx.window, 4, 0, mouse_hook, f);
+	mlx_hook(f->mlx.window, 17, 1L << 17, mlx_exit, f);
 	return (0);
 }
 

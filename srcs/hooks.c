@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:11:53 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/16 22:18:29 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:36:13 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	mouse_hook(int button, int x, int y, t_fractol *f)
 	return (0);
 }
 
-static void	mlx_exit(t_fractol *f)
+int	mlx_exit(t_fractol *f)
 {
 	mlx_destroy_image(f->mlx.ptr, f->mlx.image.ptr);
 	mlx_destroy_window(f->mlx.ptr, f->mlx.window);

@@ -2,27 +2,14 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-#Colors
-GRAY = \033[37;2m
-GREEN = \033[32;1m
-GREEN_DIM = \033[32;2m
-BLUE = \033[34;1m
-BLUE_DIM = \033[34;2m
-RED = \033[31;1m
-RED_DIM = \033[31;2m
-YELLOW = \033[33;1m
-YELLOW_DIM = \033[33;2m
-ORANGE = \033[38;5;208m
-ORANGE_DIM = \033[38;5;208;2m
-RESET = \033[0m
-
 #Libraries
 LIBS = -lm -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
-LIBFT_DIR = libft
+NAME_LIBFT = libft.a
+LIBFT_DIR = libft/
 
-MLX_DIR = /usr/local/lib
-MLX_INCLUDE = /usr/local/include
+MLX_DIR = /usr/local/lib/
+MLX_INCLUDE = /usr/local/include/
 
 #Mandatory
 NAME = fractol
@@ -57,11 +44,12 @@ OBJSDIR_BONUS = objs_bonus/
 OBJS_BONUS = $(SRCS_BONUS:%.c=$(OBJSDIR_BONUS)%.o)
 
 #Debug
-NAME_DEBUG = dbg
-SRCSDIR_TO_DEBUG = $(SRCSDIR)
 CFLAGS_DEBUG = -g -fsanitize=address -fsanitize=undefined
+NAME_DEBUG = dbg
+INCLUDES_DEBUG = $(INCLUDES)
+SRCS_DEBUG = $(SRCS)
 OBJSDIR_DEBUG = objs_debug/
-OBJS_DEBUG = $($(SRCSDIR_TO_DEBUG):%.c=$(OBJSDIR_DEBUG)%.o)
+OBJS_DEBUG = $(SRCS_DEBUG:%.c=$(OBJSDIR_DEBUG)%.o)
 
 vpath %.c $(SRCSDIR) $(SRCSDIR_BONUS)
 vpath %.h $(SRCSDIR) $(SRCSDIR_BONUS)
@@ -70,64 +58,45 @@ vpath %.a $(LIBFT_DIR) $(MLX_DIR)
 
 all: $(NAME)
 
-#Mandatory
-$(NAME) : libft $(OBJS)
-	@printf "$(GREEN)"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
-	@printf "$(RESET)"
-libft:
-	@printf "$(GREEN_DIM)"
+#Libraries
+$(NAME_LIBFT):
 	make -C $(LIBFT_DIR)
-	@printf "$(RESET)"
+
+#Mandatory
+$(NAME) : $(NAME_LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 $(OBJSDIR)%.o: %.c
-	@printf "$(GREEN_DIM)"
 	@mkdir -p $(OBJSDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(RESET)"
 
 #Bonus
 bonus: $(NAME_BONUS)
 $(NAME_BONUS) : libft $(OBJS_BONUS)
-	@printf "$(ORANGE)"
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBS) -o $@
-	@printf "$(RESET)"
 $(OBJSDIR_BONUS)%.o: %.c
-	@printf "$(GREEN_DIM)"
 	@mkdir -p $(OBJSDIR_BONUS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(RESET)"
+	$(CC) $(CFLAGS) $(INCLUDES_BONUS) -c $< -o $@
 
 #Debug
 debug: $(NAME_DEBUG)
-$(NAME_DEBUG) : libft $(OBJS_DEBUG)
-	@printf "$(ORANGE)"
+$(NAME_DEBUG) : $(NAME_LIBFT) $(OBJS_DEBUG)
 	$(CC) $(CFLAGS) $(CFLAGS_DEBUG) $(OBJS_DEBUG) $(LIBS) -o $@
-	@printf "$(RESET)"
 $(OBJSDIR_DEBUG)%.o: %.c
-	@printf "$(GREEN_DIM)"
 	@mkdir -p $(OBJSDIR_DEBUG)
-	$(CC) $(CFLAGS) $(CFLAGS_DEBUG) $(INCLUDES) -c $< -o $@
-	@printf "$(RESET)"
+	$(CC) $(CFLAGS) $(CFLAGS_DEBUG) $(INCLUDES_DEBUG) -c $< -o $@
 
 #Others
 run: all
-	@printf "$(BLUE)"
 	./$(NAME)
-	@printf "$(RESET)"
 
 clean:
-	@printf "$(RED_DIM)"
-	rm -rf $(OBJS) $(OBJS_BONUS)
-	make clean -C ./libft
-	@printf "$(RESET)"
+	make clean -C $(LIBFT_DIR)
+	rm -rf $(OBJS) $(OBJS_BONUS) $(OBJS_DEBUG)
 
 fclean: clean
-	@printf "$(RED_DIM)"
-	make fclean -C ./libft
-	@printf "$(RED)"
-	rm -f $(NAME) $(NAME_BONUS)
-	@printf "$(RESET)"
+	make fclean -C $(LIBFT_DIR)
+	rm -f $(NAME) $(NAME_BONUS) $(NAME_DEBUG)
 
 re: fclean all
 
-.PHONY: fclean all re clean libft debug
+.PHONY: fclean all re clean debug
