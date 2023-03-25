@@ -63,7 +63,7 @@ $(NAME_LIBFT):
 	make -C $(LIBFT_DIR)
 
 #Mandatory
-$(NAME) : $(NAME_LIBFT) $(OBJS)
+$(NAME): $(NAME_LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 $(OBJSDIR)%.o: %.c
 	@mkdir -p $(OBJSDIR)
@@ -71,7 +71,7 @@ $(OBJSDIR)%.o: %.c
 
 #Bonus
 bonus: $(NAME_BONUS)
-$(NAME_BONUS) : libft $(OBJS_BONUS)
+$(NAME_BONUS): $(NAME_LIBFT) $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBS) -o $@
 $(OBJSDIR_BONUS)%.o: %.c
 	@mkdir -p $(OBJSDIR_BONUS)
@@ -79,7 +79,7 @@ $(OBJSDIR_BONUS)%.o: %.c
 
 #Debug
 debug: $(NAME_DEBUG)
-$(NAME_DEBUG) : $(NAME_LIBFT) $(OBJS_DEBUG)
+$(NAME_DEBUG): $(NAME_LIBFT) $(OBJS_DEBUG)
 	$(CC) $(CFLAGS) $(CFLAGS_DEBUG) $(OBJS_DEBUG) $(LIBS) -o $@
 $(OBJSDIR_DEBUG)%.o: %.c
 	@mkdir -p $(OBJSDIR_DEBUG)

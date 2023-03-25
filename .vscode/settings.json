@@ -62,7 +62,8 @@
 		"typeinfo": "cpp",
 		"unordered_map": "cpp",
 		"utility": "cpp",
-		"vector": "cpp"
+		"vector": "cpp",
+		"fract_ol_bonus.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

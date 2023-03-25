@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:27:28 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/21 19:36:13 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:24:26 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,25 @@ static int	set_complex(t_complex *c, char *real, char *imaginary)
 	return (0);
 }
 
-static int	init_mlx(t_fractol *f, char *type)
+static void	init_mlx(t_fractol *f, char *type)
 {
 	f->mlx.ptr = mlx_init();
+	if (!f->mlx.ptr)
+		exit(-1);
 	f->mlx.window
 		= mlx_new_window(f->mlx.ptr, WIN_W, WIN_H, type);
+	if (!f->mlx.window)
+		ft_exit(-1, f->mlx.ptr, NULL, NULL);
 	f->mlx.image.ptr = mlx_new_image(f->mlx.ptr, WIN_W, WIN_H);
+	if (!f->mlx.image.ptr)
+		ft_exit(-1, f->mlx.ptr, f->mlx.window, NULL);
 	f->mlx.image.addr = mlx_get_data_addr(f->mlx.image.ptr, &f->mlx.image.bpp,
 			&f->mlx.image.line_len, &f->mlx.image.endian);
+	if (!f->mlx.image.addr)
+		ft_exit(-1, f->mlx.ptr, f->mlx.window, f->mlx.image.ptr);
 	mlx_hook(f->mlx.window, 2, 0, key_hook, f);
 	mlx_hook(f->mlx.window, 4, 0, mouse_hook, f);
 	mlx_hook(f->mlx.window, 17, 1L << 17, mlx_exit, f);
-	return (0);
 }
 
 int	main(int argc, char *argv[])

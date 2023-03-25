@@ -6,7 +6,7 @@
 /*   By: ynishimu <ynishimu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:11:53 by ynishimu          #+#    #+#             */
-/*   Updated: 2023/03/21 19:36:13 by ynishimu         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:31:33 by ynishimu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	key_hook(int key, t_fractol *f)
 		mlx_exit(f);
 	else if (key == KEY_PLUS && f->max_iters < SIZE_MAX - 100010)
 		f->max_iters += 10 + 100000 * (f->type == FERN);
-	else if (key == KEY_MINUS && f->max_iters > 10)
-		f->max_iters -= 10;
+	else if (key == KEY_MINUS && f->max_iters > 100010)
+		f->max_iters -= 10 + 100000 * (f->type == FERN);
 	else if (key == KEY_LEFT || key == KEY_A)
 		f->viewport.offset_x += 10;
 	else if (key == KEY_RIGHT || key == KEY_D)
